@@ -1,0 +1,66 @@
+﻿<!-- View for listing the current reservations. -->
+@model WittenBnb.Models.ReservationListViewModel
+@{
+    ViewBag.Title = "View Reservations";
+    ViewBag.Message = "Here are the reservations that are currently booked.";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th class="hidden-sm hidden-xs">Email Address</th>
+            <th class="hidden-sm hidden-xs">Phone Number</th>
+            <th class="hidden-sm hidden-xs">Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Reservations.Count; i++)
+        {
+        <tr>
+            <td>@Model.Reservations[i].Id</td>
+            <td>@Model.Reservations[i].FirstName</td>
+            <td>@Model.Reservations[i].LastName</td>
+            <td class="hidden-sm hidden-xs">@Model.Reservations[i].Email</td>
+            <td class="hidden-sm hidden-xs">@Model.Reservations[i].Phone</td>
+            <td class="hidden-sm hidden-xs">@Model.Reservations[i].Notes</td>
+            <td>@Html.ActionLink("Detail", "ReservationDetail", new { id = Model.Reservations[i].Id })
+                @Html.ActionLink("Edit", "ReservationEdit", new { id = Model.Reservations[i].Id})
+                <a data-toggle="modal" href="@("#deleteReservationModal" + i)">Delete</a>
+                <div class="modal fade" id="@("deleteReservationModal" + i)" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            @using (Html.BeginForm("DeleteReservation", "Reservation"))
+                            {
+                            <input type="hidden" value="@Model.Reservations[i].Id" name="Id" />
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Delete @Model.Reservations[i].Id</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete Reservation # @Model.Reservations[i].Id?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Yes</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>  }
+    </tbody>
+</table>
+
+<div class="col-sm-12 form-group">
+    <label>Total Reservations:</label> @Model.TotalReservations
+</div>
+<div class="col-sm-12">
+    @Html.ActionLink("Add Reservation", "ReservationAdd", null, new { @class = "btn btn-primary" })
+</div>
