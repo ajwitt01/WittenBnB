@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+// FOR FUTURE DEVELOPMENT
 namespace WittenBnb.Models
 {
     public class Room

@@ -5,8 +5,10 @@ using WittenBnb.Models;
 
 namespace WittenBnb.Controllers
 {
+    // ReservationController is responsible for interacting with the reservations
     public class ReservationController : Controller
     {
+        // Displays a list of current reservations.
         public ActionResult Index()
         {
             using (var WittenBnbContext = new WittenBnbContext())
@@ -31,6 +33,7 @@ namespace WittenBnb.Controllers
             }
         }
 
+        // View a specific reservation
         public ActionResult ReservationDetail(int id)
         {
             using (var WittenBnbContext = new WittenBnbContext())
@@ -55,7 +58,7 @@ namespace WittenBnb.Controllers
             return new HttpNotFoundResult();
         }
 
-
+        // Create a new reservation
         public ActionResult ReservationAdd()
         {
             var reservationViewModel = new ReservationViewModel();
@@ -63,6 +66,7 @@ namespace WittenBnb.Controllers
             return View("AddEditReservation", reservationViewModel);
         }
 
+        // Post a new reservation to the database
         [HttpPost]
         public ActionResult AddReservation(ReservationViewModel reservationViewModel)
         {
@@ -84,6 +88,7 @@ namespace WittenBnb.Controllers
             return RedirectToAction("Index");
         }
 
+        // Change a reservation's details
         public ActionResult ReservationEdit(int id)
         {
             using (var WittenBnbContext = new WittenBnbContext())
@@ -108,6 +113,7 @@ namespace WittenBnb.Controllers
             return new HttpNotFoundResult();
         }
 
+        // Post changes to a reservation to the database
         [HttpPost]
         public ActionResult EditReservation(ReservationViewModel reservationViewModel)
         {
@@ -131,6 +137,7 @@ namespace WittenBnb.Controllers
             return new HttpNotFoundResult();
         }
 
+        // Delete a reservation from the database
         [HttpPost]
         public ActionResult DeleteReservation(ReservationViewModel reservationViewModel)
         {
