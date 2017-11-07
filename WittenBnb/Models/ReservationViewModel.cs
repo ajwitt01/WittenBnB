@@ -26,5 +26,11 @@ namespace WittenBnb.Models
 
         [MaxLength(200, ErrorMessage = "The Notes field cannot be longer than 200 characters.")]
         public string Notes { get; set; }
+
+        [DisplayName("Check In")]
+        public DateTime CheckIn { get; set; }
+
+        [DisplayName("Check Out")]
+        public DateTime CheckOut { get; set; }
     }
 }

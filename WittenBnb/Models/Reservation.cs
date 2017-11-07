@@ -12,8 +12,8 @@ namespace WittenBnb.Models
             {
             }
 
-            
-            public Reservation(int id, string firstname, string lastname, string email, string phone, string notes = null)
+
+            public Reservation(DateTime checkin, DateTime checkout, int id, string firstname, string lastname, string email, string phone, string notes = null )
             {
                 Id = id;
                 FirstName = firstname;
@@ -21,6 +21,8 @@ namespace WittenBnb.Models
                 Email = email;
                 Phone = phone;
                 Notes = notes;
+                CheckIn = checkin;
+                CheckOut = checkout;
             }
 
             public int Id { get; set; }
@@ -35,5 +37,9 @@ namespace WittenBnb.Models
 
             [MaxLength(200, ErrorMessage = "The Notes field cannot be longer than 200 characters.")]
             public string Notes { get; set; }
+
+            public DateTime CheckIn { get; set; }
+
+            public DateTime CheckOut { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace WittenBnb.Migrations
                         LastName = c.String(),
                         Email = c.String(),
                         Phone = c.String(),
-                        Notes = c.String(maxLength: 200),
+                        Notes = c.String(maxLength: 200), 
                     })
                 .PrimaryKey(t => t.Id);
             

@@ -23,7 +23,9 @@ namespace WittenBnb.Controllers
                         FirstName = p.FirstName,
                         Email = p.Email,
                         Phone = p.Phone,
-                        Notes = p.Notes
+                        Notes = p.Notes,
+                        CheckIn = p.CheckIn,
+                        CheckOut = p.CheckOut,
                     }).ToList()
                 };
 

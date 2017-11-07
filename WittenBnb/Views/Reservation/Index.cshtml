@@ -14,6 +14,8 @@
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Check In</th>
+            <th>Check Out</th>
             <th class="hidden-sm hidden-xs">Email Address</th>
             <th class="hidden-sm hidden-xs">Phone Number</th>
             <th class="hidden-sm hidden-xs">Notes</th>
@@ -26,6 +28,8 @@
             <td>@Model.Reservations[i].Id</td>
             <td>@Model.Reservations[i].FirstName</td>
             <td>@Model.Reservations[i].LastName</td>
+            <td>@Model.Reservations[i].CheckIn.ToShortDateString()</td>
+            <td>@Model.Reservations[i].CheckOut.ToShortDateString()</td>
             <td class="hidden-sm hidden-xs">@Model.Reservations[i].Email</td>
             <td class="hidden-sm hidden-xs">@Model.Reservations[i].Phone</td>
             <td class="hidden-sm hidden-xs">@Model.Reservations[i].Notes</td>
