@@ -5,7 +5,6 @@
     var isEditMode = Model.Id != null;
     ViewBag.Title = isEditMode ? "Edit Reservation # " + Model.Id : "Make A Reservation";
 }
-
 <h2>@ViewBag.Title</h2>
 <br />
 
@@ -14,36 +13,56 @@
         @using (Html.BeginForm(isEditMode ? "EditReservation" : "AddReservation", "Reservation"))
         {
             @Html.HiddenFor(m => m.Id)
-            <div class="form-group">
-                @Html.LabelFor(m => m.FirstName)
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.LastName)
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.CheckIn)
-                @Html.TextBoxFor(m => m.CheckIn, new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.CheckOut)
-                @Html.TextBoxFor(m => m.CheckOut, new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Phone)
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Notes)
-                @Html.TextBoxFor(m => m.Notes, new { @class = "form-control" })
-            </div>
-            <button type="submit" class="btn btn-primary">@(isEditMode ? "Save" : "Add")</button>
-            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
-        }
-    </div>
+           
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstName)
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LastName)
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CheckIn)
+                    <br />
+                    @Html.TextBoxFor(m => m.CheckIn, new { @class = "form-control" })
+                    <!-- DATEPICKER FOR CHECKIN
+                        <input class = "form-control"
+                           type="text"
+                           data-date-autoclose="true"
+                           data-date-clear-btn="true"
+                           data-date-format="mm/dd/yyyy"
+                           data-date-today-highlight="true"
+                           data-provide="datepicker" />-->
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CheckOut)
+                    <br />
+                    @Html.TextBoxFor(m => m.CheckOut, new { @class = "form-control" })
+                    <!-- DATEPICKER FOR CHECKOUT
+                        <input class = "form-control"
+                           type="text"
+                           data-date-autoclose="true"
+                           data-date-clear-btn="true"
+                           data-date-format="mm/dd/yyyy"
+                           data-date-today-highlight="true"
+                           data-provide="datepicker" />-->
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Phone)
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Notes)
+                    @Html.TextBoxFor(m => m.Notes, new { @class = "form-control" })
+                </div>
+                <button type="submit" class="btn btn-primary">@(isEditMode ? "Save" : "Add")</button>
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+                }
+</div>
 </div>
