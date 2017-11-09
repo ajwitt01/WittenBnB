@@ -21,11 +21,11 @@ namespace WittenBnb.Controllers
                         Id = p.Id,
                         LastName = p.LastName,
                         FirstName = p.FirstName,
+                        CheckIn = p.CheckIn,
+                        CheckOut = p.CheckOut,
                         Email = p.Email,
                         Phone = p.Phone,
                         Notes = p.Notes,
-                        CheckIn = p.CheckIn,
-                        CheckOut = p.CheckOut,
                     }).ToList()
                 };
 
@@ -48,6 +48,8 @@ namespace WittenBnb.Controllers
                         Id = reservation.Id,
                         LastName = reservation.LastName,
                         FirstName = reservation.FirstName,
+                        CheckIn = reservation.CheckIn,
+                        CheckOut = reservation.CheckOut,
                         Email = reservation.Email,
                         Phone = reservation.Phone,
                         Notes = reservation.Notes
@@ -78,6 +80,8 @@ namespace WittenBnb.Controllers
                 {
                     FirstName = reservationViewModel.FirstName,
                     LastName = reservationViewModel.LastName,
+                    CheckIn = reservationViewModel.CheckIn,
+                    CheckOut = reservationViewModel.CheckOut,
                     Email = reservationViewModel.Email,
                     Phone = reservationViewModel.Phone,
                     Notes = reservationViewModel.Notes
@@ -103,6 +107,8 @@ namespace WittenBnb.Controllers
                         Id = reservation.Id,
                         FirstName = reservation.FirstName,
                         LastName = reservation.LastName,
+                        CheckIn = reservation.CheckIn,
+                        CheckOut = reservation.CheckOut,
                         Email = reservation.Email,
                         Phone = reservation.Phone,
                         Notes = reservation.Notes
@@ -127,6 +133,8 @@ namespace WittenBnb.Controllers
                 {
                     reservation.LastName = reservationViewModel.LastName;
                     reservation.FirstName = reservationViewModel.FirstName;
+                    reservation.CheckIn = reservationViewModel.CheckIn;
+                    reservation.CheckOut = reservationViewModel.CheckOut;
                     reservation.Email = reservationViewModel.Email;
                     reservation.Phone = reservationViewModel.Phone;
                     reservation.Notes = reservationViewModel.Notes;

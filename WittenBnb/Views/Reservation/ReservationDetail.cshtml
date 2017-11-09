@@ -15,6 +15,14 @@
         <br />@Html.DisplayFor(m => m.LastName)
     </div>
     <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.CheckIn)
+        <br />@Model.CheckIn.ToShortDateString()
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.CheckOut)
+        <br />@Model.CheckOut.ToShortDateString()
+    </div>
+    <div class="col-sm-12 form-group">
         @Html.LabelFor(m => m.Email)
         <br />@Html.DisplayFor(m => m.Email)
     </div>
