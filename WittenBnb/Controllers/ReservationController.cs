@@ -2,6 +2,11 @@
 using System.Linq;
 using System.Web.Mvc;
 using WittenBnb.Models;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System;
+using System.Data;
+
 
 namespace WittenBnb.Controllers
 {
@@ -87,11 +92,68 @@ namespace WittenBnb.Controllers
                     Notes = reservationViewModel.Notes
                 };
 
-                WittenBnbContext.Reservations.Add(reservation);
-                WittenBnbContext.SaveChanges();
-            }
+                // RESERVATION CONFLICT TEST BEGIN
+                using (var connection = new SqlConnection("data source=(LocalDb)\\MSSQLLocalDB;initial catalog=WittenBnb;integrated security=True;MultipleActiveResultSets=True;App=WittenBnb"))
+                {
+                    bool conflict = false;
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "SELECT CheckIn, CheckOut FROM dbo.Reservations";
 
-            return RedirectToAction("Index");
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            
+                            int? checkInConflict = null;
+                            int? checkOutConflict = null;
+
+
+                            while (reader.Read())
+                            {
+                                var CheckIn = reader.GetDateTime(0);
+                                var CheckOut = reader.GetDateTime(1);
+                                DateTime value1 = Convert.ToDateTime(CheckIn);
+                                DateTime value2 = Convert.ToDateTime(CheckOut);
+                                checkInConflict = null;
+                                checkOutConflict = null;
+                                checkInConflict = DateTime.Compare(reservation.CheckIn, value2);
+                                checkOutConflict = DateTime.Compare(reservation.CheckOut, value1);
+
+                                if ((checkInConflict <= 0 | checkOutConflict <= 0) && checkInConflict != checkOutConflict)        
+                                {
+                                    conflict = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    conflict = false;
+                                }
+                            }
+                            if (conflict)
+                            {
+                                // Declare an error of some fashion here.
+
+                            }
+                            else
+                            {
+                                WittenBnbContext.Reservations.Add(reservation);
+                                WittenBnbContext.SaveChanges();
+                            }
+                        }
+                        connection.Close();
+                    }
+
+
+                    // RESERVATION CONFLICT TEST END
+
+
+                }
+
+
+
+                return RedirectToAction("Index");
+            }
         }
 
         // Change a reservation's details
