@@ -102,13 +102,9 @@ namespace WittenBnb.Controllers
 
                         connection.Open();
                         using (var reader = command.ExecuteReader())
-                        {
-                            reader.Read();
-                            
+                        {                               
                             int? checkInConflict = null;
                             int? checkOutConflict = null;
-
-
                             while (reader.Read())
                             {
                                 var CheckIn = reader.GetDateTime(0);
@@ -143,15 +139,8 @@ namespace WittenBnb.Controllers
                         }
                         connection.Close();
                     }
-
-
                     // RESERVATION CONFLICT TEST END
-
-
                 }
-
-
-
                 return RedirectToAction("Index");
             }
         }
