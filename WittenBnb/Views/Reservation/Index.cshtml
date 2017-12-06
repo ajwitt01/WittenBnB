@@ -3,10 +3,16 @@
 @{
     ViewBag.Title = "View Reservations";
     ViewBag.Message = "Here are the reservations that are currently booked.";
+    ViewBag.Failure = TempData["failure"];
+    ViewBag.Success = TempData["success"];
 }
 
+<!-- If either ViewBag message (Failure or Success) is null from creating the reservation, then the message won't be displayed. -->
+<h2 style="color:red">@ViewBag.Failure</h2>
+<h2 style="color:green">@ViewBag.Success</h2>
 <h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
+
 
 <table class="table table-striped">
     <thead>
