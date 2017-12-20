@@ -15,7 +15,7 @@ namespace WittenBnb.Controllers
     {
         // Displays a list of current reservations.
         public ActionResult Index()
-        {
+        {                        
             using (var WittenBnbContext = new WittenBnbContext())
             {
                 var reservationList = new ReservationListViewModel
@@ -129,10 +129,11 @@ namespace WittenBnb.Controllers
                             if (conflict)
                             {
                                 // Declare an error of some fashion here.
-
+                                TempData["failure"] = "We're sorry, there is a problem with the reservation. Please choose different CheckIn and CheckOut dates.";
                             }
                             else
                             {
+                                TempData["success"] = "Reservation has been successfully added to the database!";
                                 WittenBnbContext.Reservations.Add(reservation);
                                 WittenBnbContext.SaveChanges();
                             }
